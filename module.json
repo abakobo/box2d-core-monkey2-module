@@ -1,0 +1,6 @@
+{
+	"module":"box2d",
+	"about":"box2d physics lib wrapper",
+	"version":"0.0.1",
+	"depends":["std","mojo"]
+}
