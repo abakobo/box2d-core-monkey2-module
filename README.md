@@ -1,7 +1,7 @@
 
 # Box2D physics
 
-Box2D is a 2D physics simulation lib for games made by Erin Canto (box2d.org)
+Box2D is a 2D physics simulation lib for games made by Erin Catto (box2d.org)
 
 This is a sligthly modified version, for better Monkey2 compatibility.
 
