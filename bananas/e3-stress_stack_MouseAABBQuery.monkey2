@@ -16,6 +16,8 @@ Global w_height:=700
 
 Class Box2DgfxTest Extends Window
 	
+	Field drawPhys:Bool=True 'to compare speed with/without debugdraw
+	
 	Field DDrawer:b2DebugDraw
 	Field world:b2World
 	Field down:=New b2Vec2(0,10)
@@ -68,8 +70,9 @@ Class Box2DgfxTest Extends Window
 		
 		'// Instruct the world to perform a single step of simulation.
 		'// It is generally best to keep the time step and iterations fixed. ---> they have been set globally
+		Local dt:=Microsecs()
 		world.Stepp(timeStep, velocityIterations, positionIterations)
-		
+		dt=Microsecs()-dt
 		canvas.PushMatrix()
 		
 		' moving the canvas a bit
@@ -88,8 +91,8 @@ Class Box2DgfxTest Extends Window
 		
 		canvas.Color=Color.White
 		canvas.DrawText("FPS:"+App.FPS+"    -- press space to hide/show shapes -- arrows to move -- Return to restart",15,15)
-		canvas.DrawText("Mouse location in physWorld: "+mousePhysicsLocation,15,55)
-		
+		canvas.DrawText("Mouse location in physWorld: "+mousePhysicsLocation+" phys render time: "+dt+"µs",15,55)
+		canvas.DrawText("Phys FPS "+1000000/dt,15,85)
 		
 		If Keyboard.KeyPressed(Key.Space)
 			Print "Space"

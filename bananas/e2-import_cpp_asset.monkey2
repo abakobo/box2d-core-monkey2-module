@@ -4,11 +4,6 @@
 'choose one of the files to import c++ asset source
 
 #Import "cpp_from_rube/rubegoldberg.h"
-'#Import "cpp_from_rube/deums.h"
-'#Import "cpp_from_rube/stress.h"
-'#Import "cpp_from_rube/stress2.h"
-
-
 
 
 Using std..
