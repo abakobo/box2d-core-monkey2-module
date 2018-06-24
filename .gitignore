@@ -1,9 +1,12 @@
 
+
 <<<<<<< HEAD
 # mx2 build directories
 *.build*/
 *.products
 *.products*/
+.mx2/
+*.geninfo
 
 ############
 ## Windows
@@ -28,4 +31,3 @@ imgui.ini
 
 Build/
 imgui.ini
-
