@@ -1743,7 +1743,6 @@ End
 
 Public 
 
-
 '
 ' mx2 definition of 'declared into class' enum types
 '
@@ -1755,6 +1754,9 @@ Public
 '	e_chain = 3
 '	e_typeCount = 4 
 'End
+Global b2StaticBody:=b2BodyType.b2_staticBody
+Global b2DynamicBody:=b2BodyType.b2_dynamicBody
+Global b2KinematicBody:=b2BodyType.b2_kinematicBody
 
 ' conversion function (vect ones are deprecated by operators extensions)
 '-------------------------------------------------------------------------------------------------------
@@ -1786,20 +1788,22 @@ End
 '
 '
 Struct Vec2<T> Extension
+	
 	Operator To:b2Vec2()
-	
 		Return New b2Vec2(x,y)
-	
 	End
 End
 
 Struct b2Vec2 Extension
+	
 	Operator To:Vec2f()
 		Return New Vec2f(x,y)
 	End
+	
 	Operator To:Vec2<Double>()
 		Return New Vec2<Double>(x,y)
 	End
+	
 	Operator To:String()
 		Return "b2Vec2"+"("+x+";"+y+")"
 	End
@@ -1948,13 +1952,35 @@ Struct b2AABB Extension
 End
 
 Class SimpleAABBQueryCallback Extends b2QueryCallback
+	
 	Field q_point:b2Vec2
 	Field q_fixture:b2Fixture
 	Method New(point:b2Vec2)
 		q_point=point
 		q_fixture=NULL
 	End
-	Method ReportFixture:bool(fixture:b2Fixture) Override 
+	Method ReportFixture:Bool(fixture:b2Fixture) Override
+		
+			Local inside:=fixture.TestPoint(q_point)
+			If inside
+				q_fixture=fixture
+				Return False
+			End
+		
+		Return True
+	End
+End
+
+Class SimpleAABBQueryCallbackDynamicOnly Extends b2QueryCallback
+	
+	Field q_point:b2Vec2
+	Field q_fixture:b2Fixture
+	Method New(point:b2Vec2)
+		q_point=point
+		q_fixture=NULL
+	End
+	Method ReportFixture:Bool(fixture:b2Fixture) Override
+		
 		Local body:=fixture.GetBody()
 		If (body.GetType()=b2BodyType.b2_dynamicBody)
 			Local inside:=fixture.TestPoint(q_point)
