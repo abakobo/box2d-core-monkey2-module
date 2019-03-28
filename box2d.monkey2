@@ -379,7 +379,8 @@ class b2PolygonShape extends b2Shape
 '------Ya du array à gérer ici!
 'need-bbArray getter/setter->	Field m_normals:b2Vec2[]
 	Field m_count:Int
-	Method GetVertices:b2Vec2[]()
+	Method GetVertex:b2Vec2(index:Int)
+	Method GetVertexCount:Int()
 end
 
 '-------------------------------------------------------------------
@@ -391,8 +392,9 @@ struct b2MassData
 	Field I:Float
 end
 
+
 class b2Shape extends void
-	Enum Type
+	Enum Type '!!!!!!! Must document here that the Enum is not usable mx2 side use int !!!!!!
 		e_circle,e_edge,e_polygon,e_chain,e_typeCount
 	End
 	Method Destroy() Extension="delete"
@@ -1740,6 +1742,19 @@ enum b2LimitState
 End 
 
 Public 
+
+
+'
+' mx2 definition of 'declared into class' enum types
+'
+
+'Enum b2ShapeType  'MarchePas faut utiliser 1,2,3,4 ..
+'	e_circle = 0
+'	e_edge = 1
+'	e_polygon = 2
+'	e_chain = 3
+'	e_typeCount = 4 
+'End
 
 ' conversion function (vect ones are deprecated by operators extensions)
 '-------------------------------------------------------------------------------------------------------

@@ -86,6 +86,7 @@ Function Main()
 	Local timeStep:= 0.01666666667
 	Local velocityIterations := 6
 	Local positionIterations := 2
+	
 	'// This is our little "game" loop.
 	For Local i:=1 To 10
 		'// Instruct the world to perform a single step of simulation.
